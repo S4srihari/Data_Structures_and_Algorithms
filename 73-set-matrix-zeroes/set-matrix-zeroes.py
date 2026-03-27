@@ -3,15 +3,20 @@ class Solution:
         """
         Do not return anything, modify matrix in-place instead.
         """
-        cols = set()
-        rows = set()
-        m,n = len(matrix),len(matrix[0])
-        for r in range(m):
-            for c in range(n):
-                if matrix[r][c] == 0:
-                    rows.add(r)
-                    cols.add(c)
-        for r in range(m):
-            for c in range(n):
-                if r in rows or c in cols:
-                    matrix[r][c] = 0
+        rows = len(matrix)
+        cols = len(matrix[0])
+        zero_cols = set()
+        zero_rows = set()
+        for i in range(rows):
+            for j in range(cols):
+                if matrix[i][j] == 0:
+                    zero_rows.add(i)
+                    zero_cols.add(j)
+
+        for i in zero_rows:
+            for j in range(cols):
+                matrix[i][j] = 0
+        
+        for j in zero_cols:
+            for i in range(rows):
+                matrix[i][j] = 0
